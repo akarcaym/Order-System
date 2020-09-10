@@ -1,0 +1,146 @@
+﻿@model OrderManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Add New User";
+}
+<html>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: black;
+    }
+    .txt {
+            color: black;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+    .myButton {
+            border: 0;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+            padding: 14px 40px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+    .box {
+        width: 300px;
+        padding: 20px;
+        position: absolute;
+        left: 40%;
+        top: 12%;
+        transform: translate(-%50,-%50);
+        background: #ffffff;
+        text-align: center;
+    }
+
+        .box input[type="text"], .box input[type="password"], .box select{
+            border: 0;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+        }
+
+        .box h1 {
+            color: black;
+            text-transform: uppercase;
+            font-weight: 200;
+        }
+
+    div.b {
+        font-size: 17px;
+        font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .box input[type="submit"] {
+        border: 0;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #594646;
+        padding: 14px 40px;
+        outline: none;
+        color: black;
+        border-radius: 20px;
+    }
+    .myBox {
+        width: 300px;
+        padding: 20px;
+        position: absolute;
+        left: 40%;
+        top: 17%;
+        transform: translate(-%50,-%50);
+        background: #ffffff;
+        text-align: center;
+        color:black;
+
+    }
+    .box input[type="submit"]:hover {
+        background: black;
+        color: white;
+    }
+</style>
+
+
+   
+
+
+<body>
+    <form asp-action="Create" class="myBox">
+
+        <div class="txt"><b>Add New User</b></div>
+        <hr />
+
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <input asp-for="Email" class="form-control" placeholder="E-Mail" required/>
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <br />
+
+
+        <input asp-for="Name" class="form-control" placeholder="Name" required/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+        <br />
+        <input asp-for="LName" class="form-control" placeholder="Last Name" required/>
+        <span asp-validation-for="LName" class="text-danger"></span>
+
+
+        <br />
+        <input asp-for="Password" class="form-control" placeholder="Password" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <br />
+        <select asp-for="JTitle" class="form-control" required>
+            <option value="" hidden>Job Title</option>
+            <option value="Waiter">Waiter</option>
+            <option value="Manager">Manager</option>
+        </select>
+
+        <span asp-validation-for="JTitle" class="text-danger"></span>
+
+        <br />
+        <input type="submit" value="Create" class="myButton" />
+
+    </form>
+
+</body>
+   
+       
+       
+</html>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

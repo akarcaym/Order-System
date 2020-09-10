@@ -1,0 +1,121 @@
+﻿@model IEnumerable<OrderManagement.Models.Order>
+
+<html>
+<head>
+    <style>
+        
+
+        .h1 {
+            color: black;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+
+        .myBox {
+            width: 500px;
+            padding: 20px;
+            left: 30%;
+        top: 17%;
+            position: absolute;
+            transform: translate(-%50,-%50);
+            background: #ffffff;
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .myButton {
+            border: 0;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+            padding: 14px 40px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <br />
+
+    <div class="myBox">
+       
+
+
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+
+
+                    <th>
+                        Order Name
+                    </th>
+
+                    <th>
+                        Quantity
+                    </th>
+                    
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                   
+
+
+
+
+
+                        <tr>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.OrderName)
+
+                            </td>
+
+
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.Amount)
+
+                            </td>
+                            
+                        </tr>
+
+
+
+                    
+                }
+            </tbody>
+        </table>
+        Total : <h2>@TempData["fiyat"] tl</h2>
+        
+        <a asp-action="DeleteTable" asp-route-id="@TempData["TableN"]"><button class="myButton">Close Table</button></a>
+        <a asp-action="Det" asp-route-id="@TempData["TableN"]"><button class="myButton">Order Page</button></a>
+    </div>
+
+
+</body>
+
+
+</html>
+
+<!-- js fonk : model boşsa - boş yazdır eğer masa dolu ise dışı kırmızı olsun mesela-->

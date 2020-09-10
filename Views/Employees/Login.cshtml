@@ -1,0 +1,131 @@
+﻿ @model OrderManagement.Models.Employee
+    <html>
+    @{
+        ViewData["Title"] = "Login";
+        Layout = "_Layout2";
+    }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+        }
+        .x {
+            border-color:red;
+        }
+        .box {
+            width: 300px;
+            padding: 40px;
+            position: absolute;
+            left: 40%;
+            top:17%;
+            transform: translate(-%50,-%50);
+            background: #ffffff;
+            text-align: center;
+        }
+        .myButton {
+            border: 0;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+            padding: 14px 40px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+           
+        
+    .myBox {
+        width: 300px;
+        padding: 20px;
+        position: absolute;
+        left: 40%;
+        top: 17%;
+        transform: translate(-%50,-%50);
+        background: #ffffff;
+        text-align: center;
+        color:black;
+
+    }
+            div.b {
+                  font-size: 17px;
+                  font-family: Verdana, Geneva, sans-serif;
+}
+            .box input[type="submit"] {
+                border: 0;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 2px solid #594646;
+                padding: 14px 40px;
+                outline: none;
+                color: black;
+                border-radius: 20px;
+                font-weight:bold;
+                
+            }
+
+        .box input[type="submit"]:hover {
+            background: #000000;
+            color:white;
+        }
+    </style>
+
+
+    <body>
+
+        
+
+        @using (Html.BeginForm())
+        {
+
+            @Html.AntiForgeryToken()
+
+            if (ViewBag.message == null && ViewBag.triedOnce == "yes")
+            {
+                <h4>try again .@Html.ActionLink("Create", "Employees")</h4>
+            }
+
+    <div class="myBox">
+        <img src="http://www.sclance.com/pngs/food-png/food_png_522875.png" alt="food" width="42" height="42">
+        <!--<h1>Login</h1>-->
+        <hr />
+        <br />
+
+        @Html.ValidationSummary(true, " ", new { @class = "text-danger" })
+
+
+
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { type = "text", @class = "form-control ", placeholder = "E-mail", required = "required" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+        <br />
+
+
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { type = "password", @class = "form-control", placeholder = "Password", minlength = 4, required = "required" } })
+
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        <br />
+        <input type="submit" value="Login" class="myButton" onlick="checkPassword()" />
+        <span id="result" style="color:red;"></span>
+        <p><a href="https://www.w3schools.com/html/">Forget Password?</a></p>
+    </div>
+
+        }
+
+        
+    </body>
+</html>
+<script>
+    function checkPassword(password) {
+        var sifre = document.getElementById("password");
+        var mail = sifre[0].value.trim();
+        if (sifre.length > 4 && sifre.length < 6) {
+            document.getElementById("result").innerHTML = "Error";
+            return false;
+        }
+        return true;
+    }
+</script>

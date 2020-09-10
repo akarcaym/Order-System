@@ -1,0 +1,88 @@
+﻿@model IEnumerable<OrderManagement.Models.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<html>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        //background-image: url("https://cdn1.medicalnewstoday.com/content/images/articles/320/320932/processed-foods-on-table.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .myBox {
+        width: 500px;
+        padding: 20px;
+        position: absolute;
+        left: 30%;
+        top: 17%;
+        transform: translate(-%50,-%50);
+        background: #ffffff;
+        text-align: center;
+        color: black;
+    }
+
+    
+    .txt {
+        color: black;
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+</style>
+
+
+
+
+<div class="myBox">
+    <div class="txt"><b>Menu </b></div>
+    <br />
+    
+    <table class="table">
+        
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-dark" asp-route-id="@item.FID">Edit</a>
+                    <a asp-action="Delete" class="btn btn-dark" asp-route-id="@item.FID">Delete</a>
+                </td>
+            </tr>
+            }
+            <p>
+                <a asp-action="Create" class="btn btn-sm btn-dark">Add New Item</a>
+            </p>
+        </tbody>
+    </table>
+</div>
+
+</html>

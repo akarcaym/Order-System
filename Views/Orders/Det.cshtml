@@ -1,0 +1,144 @@
+﻿@model IEnumerable<OrderManagement.Models.Order>
+
+<html>
+<head>
+    <style>
+        .split {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+
+        .h1 {
+            color: black;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+
+        .myBox {
+            left: 30%;
+        top: 17%;
+            width: 550px;
+            padding: 7px;
+            position: absolute;
+            transform: translate(-%50,-%50);
+            background: #ffffff;
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            //background-image: url("https://cdn1.medicalnewstoday.com/content/images/articles/320/320932/processed-foods-on-table.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .myButton {
+            border: 0;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+            padding: 14px 40px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .txt {
+            color: black;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <br />
+  
+        <div class="myBox">
+            <div class="txt"><b>Table @TempData["TableNo"]'s Orders</b></div>
+            <br />
+
+
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+
+
+                        <th>
+                            Order Name
+                        </th>
+
+                        <th>
+                            Quantity
+                        </th>
+
+
+                        <th>
+                            Ops
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+
+                    {
+
+
+
+                        @using (Html.BeginForm("EdTable", "Orders", FormMethod.Post))
+                        {
+                            <tr>
+                                <td>
+
+                                    @Html.DisplayFor(modelItem => item.OrderName)
+
+                                </td>
+
+                                @Html.HiddenFor(modelItem => item.TableID)
+
+                                @Html.EditorFor(modelItem => item.OrderID, new { htmlAttributes = new { type = "hidden" } })
+
+                                <td>
+
+                                    @Html.EditorFor(modelItem => item.Amount, new { htmlAttributes = new { min = "1", style = "width: 35px;" } })
+
+                                </td>
+                                <td>
+
+                                    <input type="submit" class="btn btn-dark" value="Update"> &nbsp;
+                                    <a asp-action="DeleteOrder" class="btn btn-dark" asp-route-id="@item.OrderID">Delete</a>
+
+                                </td>
+                            </tr>
+
+                        }
+
+                    }
+                </tbody>
+            </table>
+            <h2>@TempData["fiyat"]</h2>
+            <a asp-action="Create" asp-route-id="@TempData["TableNo"]"><button class="myButton">Add New Order</button></a>
+            <a asp-action="DeleteTable" asp-route-id="@TempData["TableNo"]"><button class="myButton">Close Table</button></a>
+            <a asp-action="price" asp-route-id="@TempData["TableNo"]"><button class="myButton">Check</button></a>
+        </div>
+   
+
+</body>
+
+
+<script>
+    
+</script>
+</html>
+
+<!-- js fonk : model boşsa - boş yazdır eğer masa dolu ise dışı kırmızı olsun mesela-->

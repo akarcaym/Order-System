@@ -1,0 +1,154 @@
+﻿@model OrderManagement.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+    //value ile almıyor
+}
+
+<html>
+<style>
+    .myButton {
+            border: 0;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid black;
+            padding: 14px 40px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+    body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        //background-image: url("https://cdn1.medicalnewstoday.com/content/images/articles/320/320932/processed-foods-on-table.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .myBox {
+        width: 300px;
+        padding: 20px;
+        position: absolute;
+        left: 40%;
+        top: 17%;
+        transform: translate(-%50,-%50);
+        background: #ffffff;
+        text-align: center;
+        
+    }
+
+    .btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: black;
+}
+
+.btn:hover {background: #eee;
+
+}
+.txt {
+            color: black;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+</style>
+<body>
+    
+    <div class="myBox">
+       
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <b><label asp-for="TableID" class="txt">Table ID : @TempData["dene"]</label></b>
+            <input type="hidden" asp-for="TableID" value="@TempData["dene"]" />
+            <br />
+            <span asp-validation-for="TableID" class="text-danger"></span>
+
+            <label asp-for="OrderName" class="control-label">Order Name</label>
+            <select asp-for="OrderName" class="form-control" required>
+                <optgroup label="Breakfast">
+                    @foreach (var item in ViewBag.breakfast)
+                    {
+
+
+                        <option value="@item">@item</option>
+
+                    }
+                </optgroup>
+                <optgroup label="Pizza">
+                    @foreach (var item in ViewBag.pizza)
+                    {
+
+
+                        <option value="@item">@item</option>
+
+                    }
+                    <optgroup label="Burger">
+                        @foreach (var item in ViewBag.burger)
+                        {
+
+
+                            <option value="@item">@item</option>
+
+                        }
+                    </optgroup>
+                    <optgroup label="Dessert">
+                        @foreach (var item in ViewBag.dessert)
+                        {
+
+
+                            <option value="@item">@item</option>
+
+                        }
+                    </optgroup>
+                    <optgroup label="Drink">
+                        @foreach (var item in ViewBag.Drink)
+                        {
+
+
+                            <option value="@item">@item</option>
+
+                        }
+                    </optgroup>
+            </select>
+
+
+            <br />
+
+            <label asp-for="Amount" class="control-label"></label>
+            <input asp-for="Amount" class="form-control" min="1" value="1" />
+            <span asp-validation-for="Amount" class="text-danger"></span>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="myButton" />
+            </div>
+
+        </form>
+            </div>
+
+   
+
+
+
+
+
+
+
+   
+</body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

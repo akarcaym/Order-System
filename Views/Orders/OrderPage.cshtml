@@ -1,0 +1,75 @@
+﻿@model IEnumerable<OrderManagement.Models.Order>
+@{
+    ViewData["Title"] = "Order";
+}
+<html>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        //background-image: url("https://cdn1.medicalnewstoday.com/content/images/articles/320/320932/processed-foods-on-table.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .box {
+        width: 300px;
+        padding: 20px;
+        position: absolute;
+        left: 40%;
+        top: 17%;
+        transform: translate(-%50,-%50);
+        background: #ffffff;
+        text-align: center;
+    }
+
+    .btn {
+        background-color: #ffffff;
+        -moz-border-radius: 28px;
+        -webkit-border-radius: 28px;
+        border-radius: 50%;
+        border: 2px solid black;
+        display: inline-block;
+        cursor: pointer; /*tatlı bir tıklama efekti*/
+        color: black;
+        font-family: Verdana;
+        font-size: 17px;
+        padding: 32px 25px;
+        text-decoration: none;
+    }
+
+        .btn:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .btn:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .txt {
+        color: black;
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+</style>
+
+
+<body>
+
+    <div class="box">
+        <div class="txt"><b>Order Page</b></div>
+        <br />
+        @{ for (int i = 1; i < 7; i++)
+            {
+
+                <a asp-action="Det" asp-route-id="@i"><button class="btn" style="margin:5px;">Table @i</button></a> <!-- foreach(var in model) if( table.id==x) print - (edit)  -->
+            }
+        }
+    </div>
+</body>
+</html>
+

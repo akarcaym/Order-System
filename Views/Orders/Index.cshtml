@@ -1,0 +1,79 @@
+﻿@model IEnumerable<OrderManagement.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+    <html>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            //background-image: url("https://cdn1.medicalnewstoday.com/content/images/articles/320/320932/processed-foods-on-table.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .myBox {
+            width: 500px;
+            padding: 20px;
+            position: absolute;
+            left: 30%;
+            top: 17%;
+            transform: translate(-%50,-%50);
+            background: #ffffff;
+            text-align: center;
+            color: black;
+        }
+
+
+        .txt {
+            color: black;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+    </style>
+    <body>
+        
+
+        <div class="myBox">
+            <div class="txt"><b>Order List</b></div><br />
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        
+                        <th>
+                            Table ID
+                        </th>
+                        <th>
+                            Order Name
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Amount)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TableID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </body>
+    
+    </html>

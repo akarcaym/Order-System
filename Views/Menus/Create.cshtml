@@ -1,0 +1,90 @@
+﻿@model OrderManagement.Models.Menu
+
+@{
+    ViewData["Title"] = "Add New Food";
+}
+    <html>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        //background-image: url("https://cdn1.medicalnewstoday.com/content/images/articles/320/320932/processed-foods-on-table.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .myBox {
+        width: 300px;
+        padding: 20px;
+        position: absolute;
+        left: 40%;
+        top: 17%;
+        transform: translate(-%50,-%50);
+        background: #ffffff;
+        text-align: center;
+        color:black;
+
+    }
+    .myButton {
+            border: 0;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #594646;
+            padding: 14px 40px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+    .btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: black;
+}
+     .txt {
+        color: black;
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+        </style>
+
+
+
+
+    
+        <form asp-action="Create" class="myBox">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label asp-for="Type" class="control-label">Food Type </label>
+            <select asp-for="Type" class="form-control" required>
+                <option value="">--Select Type--</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Burger">Burger</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Drink">Drink</option>
+            </select>
+            <div class="form-group">
+                <label asp-for="FoodName" class="control-label">Food Name</label>
+                <input asp-for="FoodName" class="form-control" />
+                <span asp-validation-for="FoodName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Price</label>
+                <input asp-for="Price" min="1" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="myButton" />
+            </div>
+        </form>
+
+
+
+
+</html>

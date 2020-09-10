@@ -1,0 +1,62 @@
+﻿@model OrderManagement.Models.Order
+    <html>
+<style>
+    hr{ 
+  
+    border:         none;
+    border-left:    1px solid hsla(200, 10%, 50%,100);
+    height:         100vh;
+    width:          1px;       
+}
+
+
+
+</style>
+
+
+    <h4>Order</h4>
+   
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="TableEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="text" asp-for="TableID" />
+
+                <div class="form-group">
+                    <label asp-for="OrderName" class="control-label"></label>
+                    <input asp-for="OrderName" class="form-control" />
+                    <span asp-validation-for="OrderName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Quantity: </label>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button id="down" class="btn btn-default" onclick=" down('0')"><span class="glyphicon glyphicon-minus"></span></button>
+                        </div>
+                        <input type="text" id="myNumber" class="form-control input-number" value="1" />
+                        <div class="input-group-btn">
+                            <button id="up" class="btn btn-default" onclick="up('10')"><span class="glyphicon glyphicon-plus"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+    <a asp-action="Edit" asp-route-id="OrderID">Edit</a>
+<hr />
+
+    <!--masa numarası gözükecek
+altında sırayla orderlar çıkacak
+yanda sipariş ekleme yeri olacak
+-->
+    </html>
